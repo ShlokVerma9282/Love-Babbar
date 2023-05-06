@@ -1,0 +1,12 @@
+bool solve(Node*root,int mini,int maxi)
+{
+    if(root==NULL)return false;
+    return ((maxi-mini)<=2||solve(root->left,mini,root->data)||solve(root->right,root->data,maxi));
+}
+bool isDeadEnd(Node *root)
+{
+    //Your code here
+    int mini=0,maxi=INT_MAX;
+    bool res= solve(root,mini,maxi);
+    return res;
+}
