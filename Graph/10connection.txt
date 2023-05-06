@@ -1,0 +1,39 @@
+class Solution {
+private:
+    void dfs(int curr_node, vector<bool> &visited, vector<vector<int>> &adj){
+        visited[curr_node] = true;
+        
+        for(int neighbour : adj[curr_node]){
+            if(!visited[neighbour]){
+                dfs(neighbour, visited, adj);
+            }
+        }
+    }
+public:
+    int makeConnected(int n, vector<vector<int>>& connections) {
+        // We need atleast n-1 edges to connect n components, so if we have less edges then we will just return -1
+        
+        if(connections.size() < n-1) return -1;
+        
+        // If we have sufficient edges then we will just count the number of unconnected components and return that count
+        int components = 0;
+        vector<bool> visited(n, false);
+        
+        // Creating the Adjacency List
+        vector<vector<int>> adj(n);
+
+        for(auto it : connections){
+            adj[it[0]].push_back(it[1]);
+            adj[it[1]].push_back(it[0]);
+        }
+        
+        for(int i=0; i<n; i++){
+            if(!visited[i]){
+                components++;
+                dfs(i, visited, adj);
+            }
+        }
+        
+        return components-1;
+    }
+};
