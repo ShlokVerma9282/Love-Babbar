@@ -1,0 +1,32 @@
+class Solution{
+    public:
+    vector<int> mergeHeaps(vector<int> &v1, vector<int> &v2, int n, int m) {
+        // your code here
+         vector<int>v;
+        int i=0,j=0;
+        while(i<n and j<m)
+        {
+            if(v1[i]>=v2[j])
+            {
+                v.push_back(v1[i]);
+                i++;
+            }
+            else
+            {
+                v.push_back(v2[j]);
+                j++;
+            }
+        }
+        while(j<m)
+        {
+                v.push_back(v2[j]);
+                j++;
+        }
+        while(i<n)
+        {
+                v.push_back(v1[i]);
+                i++;
+        }
+        return v;
+    }
+};

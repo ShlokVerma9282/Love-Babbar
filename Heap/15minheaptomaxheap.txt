@@ -1,0 +1,15 @@
+#include <bits/stdc++.h> 
+vector<int>MinToMaxHeap(int n, vector<int>&arr)
+{
+    vector<int> ans;
+	priority_queue<int> p;
+    for(int i = 0; i < n; i++){
+        p.push(arr[i]);
+    }
+    while(!p.empty()){
+        ans.push_back(p.top());
+        p.pop();
+    }
+    return ans;
+}
+

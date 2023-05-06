@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+#include <queue>
+vector<int> heapSort(vector<int>& arr, int n) {
+	priority_queue<int>maxheap;
+    //creating a maxheap
+    for(int i=0;i<n;i++){
+        maxheap.push(arr[i]);
+    }    
+    int index=n-1;
+    //placing the maximum element at the end of array
+    while( !maxheap.empty()){
+        int max=maxheap.top();
+        maxheap.pop();
+        arr[index]=max;
+		index--;        
+    }
+    return arr;
+}

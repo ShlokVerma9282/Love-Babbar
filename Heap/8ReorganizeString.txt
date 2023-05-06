@@ -1,0 +1,37 @@
+class Solution {
+public:
+    string reorganizeString(string S) {
+        const int n = S.size();
+        for(int i=1; i < n; i++){
+            if(S[i] == S[i - 1]){
+                int j = i + 1;
+                while(j < n && S[j] == S[i])
+                {
+                    j++;
+                }
+                if(j < n) 
+                {
+                    swap(S[i], S[j]);
+                }
+            }
+        }
+        for(int i=(n - 2); i >= 0; i--){
+            if(S[i] == S[i + 1]){
+                int j = i - 1;
+                while(j >= 0 && S[j] == S[i])
+                { 
+                    j--;
+                }
+                if(j >= 0) 
+                {
+                    swap(S[i], S[j]);
+                }
+                else 
+                {
+                    return "";
+                }
+            }
+        }
+        return S;
+    }
+};
