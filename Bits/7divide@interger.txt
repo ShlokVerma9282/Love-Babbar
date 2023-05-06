@@ -1,0 +1,26 @@
+#include <bits/stdc++.h> 
+#include <bits/stdc++.h> 
+int divideTwoInteger(int dividend, int divisor) {
+	bool neg=false;
+    if(dividend<0 || divisor<0)
+    {
+        neg=true;
+        if(dividend <0 and divisor<0)
+            neg=false;
+    }
+    dividend=abs(dividend);
+    divisor=abs(divisor);
+       
+    if(dividend<divisor)
+        return 0;
+    if(!neg){ 
+    if(divisor ==dividend)
+        return 1;
+    }
+    
+    int ans=divideTwoInteger(dividend-divisor,divisor) +divideTwoInteger(divisor,divisor);
+    if(neg)
+        return (-ans);
+    else
+    return ans;
+} 

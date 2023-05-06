@@ -1,0 +1,15 @@
+#include <bits/stdc++.h> 
+int calculateSquare(int num)
+{
+    //    Write your code here.
+   int count = 0;
+   int ans = 0;
+   if(num<0){
+       num = -(num);
+   }
+   while(count<num) {
+       ans += num;
+       count ++;
+   }
+   return ans;
+}

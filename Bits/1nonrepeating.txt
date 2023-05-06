@@ -1,0 +1,25 @@
+class Solution
+{
+public:
+    vector<int> singleNumber(vector<int> nums) 
+    {
+        // Code here.
+        vector<int>ans;
+            int x=0,y=0;
+            int temp=nums[0];
+            for(int i=1;i<nums.size();i++)
+            temp=temp^nums[i];
+            int set_bit=temp & ~(temp-1);
+            for(int i=0;i<nums.size();i++)
+            {
+                if(set_bit & nums[i])
+                x=x xor nums[i];
+                else
+                y=y xor nums[i];
+            }
+            ans.push_back(x);
+            ans.push_back(y);
+            sort(ans.begin(),ans.end());
+            return ans;
+    }
+};

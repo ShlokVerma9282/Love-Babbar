@@ -1,0 +1,26 @@
+class Solution{
+	public:
+		void helper(string p , string up , vector<string> &ans)
+	    {
+	       if(up == "" && p == "")
+	       {
+	           return;
+	       }
+	        if(up == "" )
+	        {
+	            ans.push_back(p);
+	            return;
+	        }
+	        char ch = up[0];
+	        //taking into the consideration
+	        helper(p + ch , up.substr(1) , ans);
+	        //not taking into the consideration
+	        helper(p , up.substr(1) , ans);
+	    }
+		vector<string> AllPossibleStrings(string s){
+		    vector<string> ans;
+		    helper("",s,ans);
+		    sort(ans.begin() , ans.end());
+		    return ans;
+		}
+};
