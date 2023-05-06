@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int n = nums.size();
+        if(n==0){
+            return 0;
+        }
+        if(n==1){
+            return nums[0];
+        }
+        int curr =0;
+        int maxN =0;
+        int min_max=INT_MIN;
+        bool all_neg = true;
+        for(int i =0;i<n;i++){
+            curr=curr+nums[i];
+            maxN = max(maxN,curr);
+            if(nums[i]<=0){
+                if(nums[i]>min_max){
+                    min_max = nums[i];
+                }
+            }
+            if(nums[i]>0){
+                all_neg =false;
+            }
+            if(curr<0){
+                curr=0;
+            }
+        }
+        if(all_neg==true){
+            return min_max;
+        }
+        curr =0;
+        for(int j =n-1;j>0;j--){
+            curr = curr+nums[j];
+            maxN = max(maxN,curr);
+            if(curr<0){
+                curr =0;
+            }
+        }
+        return maxN;
+    }
+};

@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int k =2;
+        int n=prices.size();
+        if (n<2) return 0;
+        if (k>=n/2) { // buy-sell-II case, unlimited
+            int maxProfit=0;
+            for (int i=1; i<n; ++i) {
+                if (prices[i]>prices[i-1]) 
+                maxProfit += prices[i] - prices[i-1];
+            }
+            return maxProfit;
+        }
+        // if k<n/2, use DP approach but only O(k) space
+        vector<int> f(k+1,0), g(k+1,0);
+        for (int i=1; i<n; ++i) {
+            int diff = prices[i] - prices[i-1], temp = f[0];
+            for (int kk=1; kk<=k; ++kk) {
+                g[kk] = max(g[kk], temp) + diff;
+                temp=f[kk];
+                f[kk] = max(f[kk], g[kk]);
+            }
+        }
+        return f[k];
+    }
+};

@@ -1,0 +1,24 @@
+#include <bits/stdc++.h> 
+int pairSum(vector<int> &arr, int n, int target){
+	// Write your code here.
+    int count = 0;
+    int start =0;
+    int end =n-1;
+    while(start<end){
+        if(arr[start]+arr[end]>target){
+         end--;  
+        }
+        else if(arr[start]+arr[end]<target){
+            start++;
+        }
+        else if(arr[start]+arr[end]==target){
+            count++;
+            start++;
+            end--;
+        }
+    }
+    if(count==0){
+        return -1;
+    }
+    return count;
+}

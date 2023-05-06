@@ -1,0 +1,66 @@
+ int trap(vector<int>& arr) {
+        int n =arr.size();
+        int left = 0;
+        int right =2;
+        int curr;
+        int sum = 0;
+        for(int i=1;i<n-1;i++){
+            curr =i;
+            if(arr[left]<arr[curr]){
+                left++;
+                right++;
+            }
+            else if(arr[left]>arr[curr]&&arr[right]>=arr[left]){
+                sum+=arr[left]-arr[curr];
+                left++;
+                right++;
+            }
+            else if(arr[left]>arr[curr]&&arr[right]<arr[left]&&right==n-1){
+                sum+=arr[right]-arr[curr];
+            }
+            else if(arr[left]>arr[curr]&&arr[right]<arr[left]){
+                int  j=1;
+                int num = i+1;
+                vector<int>val;
+                vector<int>extra;
+                bool check =false;
+                while(num<=n-1){
+                    if(arr[num]>=arr[left]){
+                        check = true;
+                        break;
+                    }
+                    if(arr[num]>arr[curr]){
+                        check = true;
+                        val.push_back(arr[num]-arr[curr]);
+                        extra.push_back(num);
+                        if(num==n-1){
+                            break;
+                        }
+                    }
+                    num++;
+                    j++;
+                }
+                if(!check){
+                    left++;
+                    right++;
+                    continue;
+                }
+                sum+=(j*(arr[left]-arr[curr]));
+                for(int x=0;x<val.size();x++){
+                    sum-=val[x];
+                }
+                for(int y=0;y<extra.size();y++){
+                    if(num>extra[y]){
+                    sum-=(arr[extra[y]]-arr[extra[y]+1])*((num-extra[y])-1);
+                    }
+                }
+                left++;
+                right++;
+            }
+            else if(arr[left]==arr[curr]){
+                left++;
+                right++;
+            }
+        }
+    return sum;    
+    }

@@ -1,0 +1,48 @@
+#include<iostream>
+#include <bits/stdc++.h> 
+#include<vector>
+using namespace std;
+#include <unordered_map>
+int minimumJumps(int *arr, int n)
+{
+    // write your code here
+        int count = 0;
+    int i = 0;
+    int y = n;
+    while (i != y)
+    {
+        if (arr[i]==0){
+            return -1;
+        }
+        if(n>arr[i]){
+            int max_jump=0;
+            int a =0;
+            int k = 0;
+            for(int x=i+arr[i];x!=i;x--){
+                if(arr[x]-k>max_jump){
+                    max_jump = arr[x];
+                    a = x;
+                }
+                k++;
+            }
+                if(max_jump==0){
+                    return -1;
+                }
+                n=n-(a-i);
+                i = a;
+                count++;
+            }
+        else{
+            count++;
+            return count;
+        }
+        }
+        return count;
+  
+}
+int main(){
+
+    int arr[5]={2,1,3,2,4};
+    cout<<minimumJumps(arr,5);
+    
+}

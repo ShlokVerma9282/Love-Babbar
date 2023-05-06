@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+
+int helper(int arr[],int n, int *ans){
+    int max_ans = 0;
+    ans[0] =arr[0]; 
+    for(int i =1;i<n;i++){
+        if(ans[i-1]>0){
+            ans[i]=ans[i-1]+arr[i];
+            if(ans[i]>max_ans){
+                max_ans=ans[i];
+            }
+        }
+        else if(ans[i-1]>arr[i]){
+            ans[i]=ans[i-1];
+            if(ans[i]>max_ans){
+                max_ans=ans[i];
+            }
+        }
+        else{
+            ans[i]=arr[i];
+            if(ans[i]>max_ans){
+                max_ans=ans[i];
+            }
+        }
+    }
+    return max_ans;
+}
+
+long long maxSubarraySum(int arr[], int n)
+{
+    /*
+        Don't write main().
+        Don't read input, it is passed as function argument.    
+        No need to print anything.
+        Taking input and printing output is handled automatically.
+    */
+    int *ans = new int [n];
+    return helper(arr,n,ans);
+}

@@ -1,0 +1,16 @@
+#include <bits/stdc++.h> 
+void reverseArray(vector<int> &arr , int m)
+{
+	if(m> arr.size()){
+        return;
+    }
+    int last = arr.size()-1;
+    int l = (m+1+arr.size())/2; 
+    for(int i =m+1;i<l;i++){
+        int a = arr[i];
+        int b = arr[last];
+        arr[i]=b;
+        arr[last]=a;
+        last--;
+    }
+}

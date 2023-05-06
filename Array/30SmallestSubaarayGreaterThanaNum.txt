@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int minSubArrayLen(int t, vector<int>& arr) {
+        int left =0;
+        int right =0;
+        int sum =0;
+        bool exists =false;
+        int length = arr.size();
+        while(right<arr.size()){
+            sum+=arr[right];
+            if(sum>=t){
+                exists = true;
+                length = min(right-left+1,length);
+
+                sum-=arr[left];
+                left++;
+                while(sum>=t){
+                    length = min(right-left+1,length);
+                    sum-=arr[left];
+                    left++;
+                }
+            }
+            right++;
+        }
+        if(!exists){
+            return 0;
+        }
+        return length;
+    }
+};

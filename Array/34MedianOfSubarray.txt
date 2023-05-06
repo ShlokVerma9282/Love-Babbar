@@ -1,0 +1,25 @@
+vector<double> findMedian(vector<int> &arr, int n, int m)
+{
+    // Write Your Code here.
+    vector<double>ans;
+    int i = 0;
+    for(int j = m-1;j<n;j++){
+        double x = 2;
+        int *temp = new int[m];
+        int ref = i;
+        for(int y = 0;y<m;y++){
+            temp[y]=arr[ref];
+            ref++;
+        }
+        sort(temp,temp+m);
+        if(m%2==0){
+            ans.push_back((temp[m/2]+temp[(m/2)-1])/x);
+        }
+        else{
+            ans.push_back(temp[m/2]);
+            delete[] temp;
+        }
+        i++;
+    }
+    return ans;
+}

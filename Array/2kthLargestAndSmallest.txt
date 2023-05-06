@@ -1,0 +1,11 @@
+/*#include<algorithm>
+vector<int> kthSmallLarge(vector<int> &arr, int n, int k)
+{
+	// Write your code here.
+    vector<int>vect;
+    sort(arr.begin(),arr.end());
+    cout<<endl;
+    vect.push_back(arr[k-1]);
+    vect.push_back(arr[n-k]);
+    return vect;
+}*/

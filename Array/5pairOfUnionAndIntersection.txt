@@ -1,0 +1,30 @@
+#include <bits/stdc++.h> 
+pair < int , int > findSimilarity(vector < int > arr1, vector < int > arr2, int n, int m) 
+{
+	// Write Your Code here.  
+    pair<int,int> ans;
+    ans.first = 0;
+    ans.second=0;
+    sort(arr1.begin(),arr1.end());
+    sort(arr2.begin(),arr2.end());
+    int i = 0;
+    int j = 0;
+    while(n!= i&&m!=j){
+        if(arr1[i]==arr2[j]){
+            ans.first=ans.first+1;
+            ans.second=ans.second+1;
+            i++;
+            j++;
+        }
+        else if(arr1[i]!=arr2[j]&&arr1[i]>arr2[j]){
+            ans.second=ans.second+1;
+            j++;
+        }
+        else if(arr1[i]!=arr2[j]&&arr1[i]<arr2[j]){
+            ans.second=ans.second+1;
+            i++;
+        }
+    }
+    ans.second=ans.second+(n-i)+(m-j);
+    return ans;
+}
