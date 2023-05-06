@@ -1,0 +1,31 @@
+#include <bits/stdc++.h> 
+void dfs(vector<vector<int>> &adj, vector<bool> &vis, int node){
+   vis[node] = true;
+   for(int x:adj[node]){
+       if(!vis[x]){
+           dfs(adj,vis,x);
+       }
+   }
+}
+bool isGraphTree(int n, vector<vector<int>> &edgeList)
+{
+// Write your code here
+   if(edgeList.size()!=n-1){
+       return false;
+   }
+   vector<vector<int>> adj(n);
+   for(int i=0;i<edgeList.size();i++){
+ adj[edgeList[i][0]].push_back(edgeList[i][1]);
+       adj[edgeList[i][1]].push_back(edgeList[i][0]);
+   }
+   vector<bool> vis(n,false);
+   for(int i=0;i<n;i++){
+       if(!vis[i]){
+           if(i>0){
+               return false;
+           }
+           dfs(adj,vis,i);
+       }
+   }
+   return true;
+}

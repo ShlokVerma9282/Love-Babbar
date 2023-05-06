@@ -1,0 +1,45 @@
+class Solution{
+    public:
+    /* Should return minimum distance between a and b
+    in a tree with given root*/
+    Node* lca(Node*root,int n1,int n2)
+    {
+        if(root==NULL)return NULL;
+        if(root->data==n1||root->data==n2) return root;
+        Node* left = lca(root->left,n1,n2);
+        Node* right = lca(root->right,n1,n2);
+        if(left!=NULL &&right!=NULL)
+        {
+            return root;
+        }
+        else if(left==NULL && right!=NULL)
+        {
+            return right;
+        }
+        else if(left!=NULL && right==NULL)
+        {
+            return left;
+        }
+        else
+        {
+            return NULL;
+        }
+    }
+    void solve(Node *root,int a,int &dist,int level)
+    {
+        if(root==NULL) return;
+        if(root->data==a) {
+            dist = level;
+        }
+        solve(root->left, a, dist, level+1);
+        solve(root->right, a, dist, level+1);
+    }
+    int findDist(Node* root, int a, int b) {
+        // Your code here
+        Node * l = lca(root, a, b);
+        int dist1 = 0, dist2 = 0;
+        solve(l, a, dist1, 0);
+        solve(l, b, dist2, 0);
+        return dist1 + dist2;
+    }
+};

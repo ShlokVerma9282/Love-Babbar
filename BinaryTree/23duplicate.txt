@@ -1,0 +1,22 @@
+    unordered_map<string,int>mp;
+    set<string>ans;
+    string solve(Node *root)
+    {
+        if(root==NULL) return "?";
+        if(root->left==NULL && root->right==NULL){
+            string s = to_string(root->data);
+            return s;
+        }
+        string left = solve(root->left);
+        string right = solve(root->right);
+        string a = to_string(root->data)+'@'+left+'@'+right;
+        mp[a]++;
+        if(mp[a]>=2) ans.insert(a);
+        return a;
+    }
+    int dupSub(Node *root) {
+         // code here
+         solve(root);
+         if(ans.size()>0) return true;
+            return false;
+    }

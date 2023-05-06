@@ -1,0 +1,21 @@
+long long ans;
+long long sum;
+long long solve(BinaryTreeNode<int> *root){
+   if(!root){
+       return 0;
+   }
+   long long x=solve(root->left) ;
+   long long y=solve(root->right);
+   sum+=x+y;
+   ans=max(ans,x+y+root->data);
+   return x+y+root->data;
+}
+long long maxSubtreeSum(BinaryTreeNode<int> *root){
+// Write your code here.
+   if(!root){
+       return 0;
+   }
+   ans=INT_MIN;
+    solve(root);
+   return ans;
+}
