@@ -1,0 +1,22 @@
+#include <bits/stdc++.h> 
+int solve(string &str1,string &str2,int i,int j,vector<vector<int>>&dp)
+{
+    if(i<0||j<0)
+    {
+        return 0;
+    }
+    if(dp[i][j]!=-1)
+    {
+        return dp[i][j];    
+    }
+    if(i!=j&&str1[i]==str2[j]){
+        return dp[i][j]=solve(str1,str2,i-1,j-1,dp)+1;
+    }
+    return dp[i][j]=max(solve(str1,str2,i-1,j,dp),solve(str1,str2,i,j-1,dp));
+}
+int LRS(string & str) {
+  // Write your code here.
+    int n = str.size();
+    vector<vector<int>>dp(n+1,(vector<int>(n+1,-1)));
+    return solve(str,str,n,n,dp);
+}

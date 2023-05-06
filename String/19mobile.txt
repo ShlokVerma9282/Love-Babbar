@@ -1,0 +1,43 @@
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        vector<string> ret;
+        string tmp = "";
+        int n = digits.length();
+        string num_to_letters[] = {
+            "",
+            "",
+            "abc",
+            "def",
+            "ghi",
+            "jkl",
+            "mno",
+            "pqrs",
+            "tuv",
+            "wxyz",
+        };
+        
+        if (n == 0)
+            return ret;
+        
+        recursiveCombinations(digits, ret, tmp, n, 0, num_to_letters);
+        
+        return ret;
+    }
+    
+    void recursiveCombinations(string digits, vector<string> &ret, string tmp, int n, int start, string num_to_letters[])
+    {
+        if (start == n)
+        {
+            ret.push_back(tmp);
+            return;
+        }
+            
+        int first = digits[start] - '0';
+        int i = 0;
+        int len = num_to_letters[first].length();
+        
+        for (i = 0; i < len; i++)
+            recursiveCombinations(digits, ret, tmp+num_to_letters[first][i], n, start+1, num_to_letters);
+    }
+};

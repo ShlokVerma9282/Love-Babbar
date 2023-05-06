@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int max =0;
+        int curr=1;
+        int max_int;
+        int n =nums.size();
+        if(n==1){
+            return nums[0];
+        }
+        sort(nums.begin(),nums.end());
+        for(int i =1;i<n;i++){
+        if(nums[i-1]!=nums[i]){
+            if(curr>max){
+            max=curr;
+            max_int = nums[i-1];
+            }  
+            curr=1;      
+        }
+        else{
+            curr++;
+            if(i==(n-1)){
+            if(curr>max){
+            max=curr;
+            max_int = nums[i-1];
+            }
+            } 
+        }
+        }
+    return max_int;
+    }
+
+};

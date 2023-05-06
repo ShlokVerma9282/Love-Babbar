@@ -1,0 +1,15 @@
+#include <bits/stdc++.h> 
+int isCyclicRotation(string &p, string &q) 
+{
+    //    Write your code here
+    if(p.size()!=q.size()){
+        return 0;
+    }
+    string s = p+p;
+    if(s.find(q)!=string::npos){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}

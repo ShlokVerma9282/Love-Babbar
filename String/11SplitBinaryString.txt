@@ -1,0 +1,16 @@
+#include <bits/stdc++.h> 
+void sort0and1(int n, vector<int> &A){
+    int l=0;
+    int h=n-1;
+    while(l<h){
+        if(A[l]==0)
+            l++;
+        else if(A[h]==1)
+            h--;
+        else if(A[l]!=A[h]){
+            swap(A[l],A[h]);
+            l++;
+            h--;
+        }
+    }
+}

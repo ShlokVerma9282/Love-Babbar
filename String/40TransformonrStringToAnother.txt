@@ -1,0 +1,38 @@
+#include <bits/stdc++.h> 
+void help(string &s1,string &s2,int &count)
+{
+    if(s1[0]!=s2[0])
+    {
+        int j=0;
+        for(int i=0;i<s2.size();i++)
+        {
+            if(s2[i]==s1[0])
+            {
+                j=i;
+                break;
+            }
+        }
+        swap(s2[0],s2[j]);
+        count++;
+    }
+    return;
+}
+int minShift(string &s1, string &s2)
+{
+	// Write your code here
+    int n = s1.size();
+    int m = s2.size();
+    if(n!=m)
+    {
+        return -1;
+    }
+    int count=0;
+    while(s1[0]!='\0')
+    {
+        help(s1,s2,count);
+        
+        s1=s1.substr(1);
+        s2=s2.substr(1);
+    }
+    return count;
+}

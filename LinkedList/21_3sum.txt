@@ -1,0 +1,29 @@
+
+int countTriplets(struct Node *head, int x)
+{ // code here.
+    vector<int> v;
+    while (head != NULL)
+    {
+        v.push_back(head->data);
+        head = head->next;
+    }
+    int count = 0;
+    for (int i = 0; i < v.size(); i++)
+    {
+        int s = i + 1, e = v.size() - 1;
+        while (s < e)
+        {
+            if (v[i] + v[s] + v[e] > x)
+                e--;
+            else if (v[i] + v[s] + v[e] < x)
+                s++;
+            else
+            {
+                count++;
+                s++;
+                e--;
+            }
+        }
+    }
+    return count;
+}

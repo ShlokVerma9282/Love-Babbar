@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+vector<int> findRepeatingAndMissingNumbers(vector<int> nums)
+{
+    // Write your code here.
+    int n = nums.size();
+    int sum_of_n = (n*(n+1))/2;
+    int sum = 0;
+    int rep = 0;
+    unordered_map<int,int>check;
+    vector<int>ans;
+    for(int i=0;i<n;i++)
+    {
+        if(check.count(nums[i])==0)
+        {
+           check[nums[i]]=1;
+        }
+        else
+        {
+           rep = nums[i]; 
+        }
+        check[nums[i]]=true;
+        sum+=nums[i];
+    }
+    int miss = sum_of_n - sum;
+    miss += rep;
+    ans.push_back(rep);
+    ans.push_back(miss);
+    return ans;
+}

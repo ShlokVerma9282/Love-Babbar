@@ -1,0 +1,41 @@
+class Solution {
+public:
+    int help(string s,string t, int **dp)
+    {
+        if(s.size()==0||t.size()==0)
+        {
+            return max(s.size(),t.size());
+        }
+        if(dp[s.size()][t.size()]!=-1)
+        {
+            return dp[s.size()][t.size()];
+        }
+        int ans;
+        if(s[0]==t[0]){
+            return help(s.substr(1),t.substr(1),dp);
+        }
+        else
+        {
+        int a =help(s.substr(1),t.substr(1),dp)+1;
+        int b =help(s.substr(1),t,dp)+1;
+        int c =help(s,t.substr(1),dp)+1;
+        ans= min(a,min(b,c));
+        }
+        dp[s.size()][t.size()] = ans;
+        return ans;
+    }
+    int minDistance(string s, string t) {
+        int m = s.size();
+        int n = t.size();
+        int **dp = new int *[m+1];
+        for(int i=0;i<m+1;i++)
+        {
+            dp[i] = new int [n+1];
+            for(int j=0;j<n+1;j++)
+            {
+                dp[i][j]=-1;
+            }
+        }
+        return help(s,t,dp);
+    }
+};

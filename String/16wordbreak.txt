@@ -1,0 +1,33 @@
+#include <bits/stdc++.h> 
+
+void solve(set<string>mp,string sentence, string temp,vector<string>&ans)
+{
+    if(sentence.size()==0)
+    {
+        ans.push_back(temp);
+        return;
+    }
+    for(int i =0;i<sentence.size();i++)
+    {
+        string left = sentence.substr(0,i+1);
+        if(mp.find(left)!=mp.end())
+        {
+            string right = sentence.substr(i+1);
+            solve(mp,right,temp + left + " ",ans);
+        }
+    }
+}
+
+vector<string> getAllValidSentences(string &sentence, vector<string> &dictionary)
+{
+    //  write your code here.
+    set<string> mp;
+    for(int i=0;i<dictionary.size();i++)
+    {
+        mp.insert(dictionary[i]);
+    }
+    vector<string>ans;
+    string temp = "";
+    solve(mp,sentence,temp,ans);
+    return ans;
+}

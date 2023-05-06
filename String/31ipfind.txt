@@ -1,0 +1,44 @@
+class Solution {
+public:
+    vector<string> restoreIpAddresses(string s) 
+    { 
+        vector<string>ans;
+
+        for(int i=1;i<=3;i++)
+        {
+            if(s.length()-i>9) continue;
+            for(int j=1;j<=3;j++)
+            {
+                if(s.length()-i-j>6) continue;
+                for(int k=1;k<=3;k++)
+                {
+                    if(s.length()-i-j-k>3) continue;
+
+                    string a = s.substr(0,i);
+                    string b = s.substr(i,j);
+                    string c = s.substr(i+j,k);
+                    string d = s.substr(i+j+k,s.length()-(i+j+k));
+
+                if(!isValid(a)||!isValid(b)||!isValid(c)||!isValid(d))
+                {
+                    continue;
+                }
+                string ip = a+"."+b+"."+c+"."+d;
+                ans.push_back(ip);
+                }
+               
+            }
+        }
+        return ans;
+    }
+     bool isValid(string ip){
+        if(ip=="")
+            return false;
+        
+        if(ip.length()>1)
+        if(ip.at(0)=='0')
+            return false;
+        
+        return atoi(ip.c_str()) <= 255;
+    }
+};

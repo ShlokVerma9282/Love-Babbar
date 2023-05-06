@@ -1,0 +1,32 @@
+#include<unordered_map>
+int countCustomers(vector<int> &arr, int k)
+{
+    //    Write your code here
+    vector<int> map(arr.size(),-2);
+    int count=0;
+    for(int i=0;i<arr.size();i++)
+    {
+        if(map[arr[i]]>-2)
+        {
+            if(map[arr[i]]==1)
+            {
+                map[arr[i]]=0;
+                k++;
+            }
+        }
+        else
+        {
+            if(k==0)
+            {
+                map[arr[i]]=-1;
+                count++;
+            }
+            else
+            {
+                map[arr[i]]=1;
+                k--;
+            }
+        }
+    }
+    return count;
+}

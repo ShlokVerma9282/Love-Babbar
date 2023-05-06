@@ -1,0 +1,43 @@
+class Solution {
+public:
+int foundString(int n, int m,int i,int j, vector<vector<char>> &grid , string &s,int x)
+{
+      int found =0;
+      if(i>=0&&i<n&&j>=0&&j<m&&s[x]==grid[i][j])
+      {
+          char a = s[x];
+          x++;
+          grid[i][j]=0;
+          if(s[x]=='\0')
+          {
+              found =1;
+          }
+          else
+          {
+              found+=foundString(n,m,i,j+1,grid,s,x);
+              found+=foundString(n,m,i,j-1,grid,s,x);
+              found+=foundString(n,m,i+1,j,grid,s,x);
+              found+=foundString(n,m,i-1,j,grid,s,x);
+          }
+          grid[i][j]=a;
+      }
+    return found;
+}
+    bool exist(vector<vector<char>>& grid, string s) 
+    {
+        int count = 0;
+        int n = grid.size();
+        int m = grid[0].size();
+        for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            count+=foundString(n,m,i,j,grid,s,0);
+            if(count>=1){
+                return true;
+            }
+        }
+    }
+    return false;
+    }
+};

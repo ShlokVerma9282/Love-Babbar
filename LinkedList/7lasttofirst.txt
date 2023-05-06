@@ -1,0 +1,39 @@
+#include <bits/stdc++.h> 
+/****************************************************************
+
+Following is the class structure of the Node class:
+
+    class Node
+    {
+    public:
+        int data;
+        Node *next;
+        Node(int data)
+        {
+	        this->data = data;
+	        this->next = NULL;
+        }
+    };
+
+*****************************************************************/
+
+Node *delAddLastNode(Node *head){
+	// Write your code here.
+    if(head==NULL||head->next==NULL)
+    {
+        return head;
+    }
+    Node *h = new Node(0);
+    Node *curr=head;
+    Node*cur_r=curr;
+    Node *prev=NULL;
+    while(curr->next)
+    {
+        prev=curr;
+        curr=curr->next;
+    }
+    h->next=curr;
+    prev->next=NULL;
+    curr->next=cur_r;
+    return h->next;
+}

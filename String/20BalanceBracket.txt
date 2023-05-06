@@ -1,0 +1,67 @@
+class Solution {
+public:
+    int minAddToMakeValid(string s) {
+        int count=0;
+        stack<char>c;
+        for(int i=0;i<s.size();i++)
+        {
+            char a = s[i]; 
+            if(a=='('||a=='{'||a=='[')
+            {
+                cout<<a<<endl;;
+                c.push(a);
+            }
+            if(a==')')
+            {
+                if(c.empty())
+                {
+                  count++;  
+                }
+                else if(c.top()!='(')
+                {
+                    count++;
+                }
+                else
+                {
+                c.pop();
+                }
+            }
+            if(a=='}')
+            {
+                if(c.empty())
+                {
+                  count++;  
+                }
+                else if(c.top()!='{')
+                {
+                    count++;
+                }
+                else
+                {
+                c.pop();
+                }
+            }
+            if(a==']')
+            {
+                if(c.empty())
+                {
+                  count++;  
+                }
+                else if(c.top()!='[')
+                {
+                    count++;
+                }
+                else
+                {
+                c.pop();
+                }
+            }
+        }
+    while(!c.empty())
+    {
+        c.pop();
+        count++;
+    }    
+    return count;
+    }
+};

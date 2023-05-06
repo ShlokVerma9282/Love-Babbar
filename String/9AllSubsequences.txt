@@ -1,0 +1,22 @@
+#include <bits/stdc++.h> 
+void solve(vector<string>&ans,string input, string output)
+{
+    if (input.empty()) {
+        if(output.empty()){
+          return;  
+        }
+        ans.push_back(output);
+        return;
+    }
+ 
+    solve(ans,input.substr(1), output + input[0]);
+ 
+    solve(ans,input.substr(1), output);
+}
+
+vector<string> subsequences(string str){
+    vector<string>ans;
+    string output ="";
+    solve(ans,str,output);
+    return ans;
+}
