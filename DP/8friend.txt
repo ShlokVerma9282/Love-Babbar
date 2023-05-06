@@ -1,0 +1,23 @@
+class Solution
+{
+public:
+    int mod = 1000000007;
+    int solve(int n)
+    {
+        int prev2=0;
+        int prev1=1;
+        for(int i=1;i<=n;i++)
+        {
+            int ans = (prev1%mod)+((prev2%mod)*(i-1)%mod)%mod;
+            prev2=prev1;
+            prev1=ans;
+        }
+        return prev1;
+    }
+    int countFriendsPairings(int n) 
+    { 
+        // code here
+        return solve(n)%mod;
+    }
+};    
+ 

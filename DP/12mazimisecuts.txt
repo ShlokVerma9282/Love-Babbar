@@ -1,0 +1,28 @@
+int maximizeTheCuts(int n, int x, int y, int z)
+    {
+        //Your code here
+        int i,j;
+        vector<int> dp(n+1);
+        
+        for(i=n-1;i>=0;i--){
+            int a=INT_MIN;
+            int b=INT_MIN;
+            int c = INT_MIN;
+            
+            if(i+x<=n)  
+                a = 1+dp[i+x];
+                
+            if(i+y<=n)  
+                b = 1+dp[i+y];
+                
+            if(i+z<=n)  
+                c = 1+dp[i+z];
+                
+            dp[i] = max(a,max(b,c));
+        }
+        
+        if(dp[0]<0)
+            return 0;
+            
+        return dp[0];
+    }
